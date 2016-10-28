@@ -7,15 +7,16 @@ set -e
 : ${PGPORT:=${DB_PORT_5432_TCP_PORT:=5432}}
 : ${PGUSER:=${DB_ENV_POSTGRES_USER:=${POSTGRES_USER:='postgres'}}}
 : ${PGPASSWORD:=${DB_ENV_POSTGRES_PASSWORD:=$POSTGRES_PASSWORD}}
-export PGHOST PGPORT PGUSER PGPASSWORD
+
+DB_ARGS=("--db_user" $PGUSER "--db_password" $PGPASSWORD "--db_host" $PGHOST "--db_port" $PGPORT)
 
 case "$1" in
 	--)
 		shift
-		exec odoo "$@"
+		exec odoo "${DB_ARGS[@]}" "$@"
 		;;
 	-*)
-		exec odoo "$@"
+		exec odoo "${DB_ARGS[@]}" "$@"
 		;;
 	*)
 		exec "$@"
