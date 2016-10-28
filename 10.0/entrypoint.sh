@@ -5,8 +5,8 @@ set -e
 # set odoo database host, port, user and password
 : ${PGHOST:=${DB_PORT_5432_TCP_ADDR:='db'}}
 : ${PGPORT:=${DB_PORT_5432_TCP_PORT:=5432}}
-: ${PGUSER:=${DB_ENV_POSTGRES_USER:=${POSTGRES_USER:='postgres'}}}
-: ${PGPASSWORD:=${DB_ENV_POSTGRES_PASSWORD:=$POSTGRES_PASSWORD}}
+: ${PGUSER:=${DB_ENV_POSTGRES_USER:=${POSTGRES_USER:='odoo'}}}
+: ${PGPASSWORD:=${DB_ENV_POSTGRES_PASSWORD:=${POSTGRES_PASSWORD:='odoo'}}}
 
 DB_ARGS=("--db_user" $PGUSER "--db_password" $PGPASSWORD "--db_host" $PGHOST "--db_port" $PGPORT)
 
